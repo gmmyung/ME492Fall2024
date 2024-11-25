@@ -28,17 +28,17 @@ std::vector<double> readInputFile(std::string input_file) {
     fin.close();
 
     // loop over each read-in line and save the vertices into a vector data
-    for (int n = 0; n < static_cast<int>(input_strings.size()); ++n) {
+    for (uint n = 0; n < static_cast<uint>(input_strings.size()); ++n) {
       std::istringstream s(input_strings[n]);
       std::array<double, 3> xyz;
       s >> xyz[0] >> xyz[1] >> xyz[2];
-      for (int i = 0; i < 3; ++i) {
+      for (uint i = 0; i < 3; ++i) {
         vertices.push_back(xyz[i]);
       }
     }
 
     // output vertices for debugging
-    for (int i = 0; i < static_cast<int>(vertices.size()) / 3; ++i) {
+    for (uint i = 0; i < static_cast<uint>(vertices.size()) / 3; ++i) {
       std::cout << "Input vertex: " << vertices[3 * i + 0] << " "
                 << vertices[3 * i + 1] << " " << vertices[3 * i + 2]
                 << std::endl;
@@ -67,8 +67,8 @@ void writeFile(std::vector<double> scaled_vertices, std::string output_file) {
     std::ofstream fout;
     fout.exceptions(std::fstream::badbit);
     fout.open(output_file.c_str(), std::ios_base::out);
-    for (int i = 0; i < static_cast<int>(scaled_vertices.size()) / 3; ++i) {
-      for (int j = 0; j < 3; ++j) {
+    for (uint i = 0; i < static_cast<uint>(scaled_vertices.size()) / 3; ++i) {
+      for (uint j = 0; j < 3; ++j) {
         fout << scaled_vertices[3 * i + j] << " ";
       }
       fout << std::endl;
